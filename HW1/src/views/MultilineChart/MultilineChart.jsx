@@ -49,7 +49,6 @@ const MultilineChart = ({ data = [], dimensions = {} }) => {
       .axisLeft(yScale)
       .ticks(5)
       .tickSize(-width)
-      .tickFormat((val) => `${val}%`);
     const yAxisGroup = svg.append("g").call(yAxis);
     yAxisGroup.select(".domain").remove();
     yAxisGroup.selectAll("line").attr("stroke", "rgba(255, 255, 255, 0.2)");

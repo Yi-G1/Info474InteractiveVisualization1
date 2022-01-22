@@ -7,6 +7,7 @@ import { uniq } from "lodash";
 import { useState } from 'react'
 import logo from './logo.svg'
 import census from "./census.js";
+import "./style.css";
 import './App.css'
 
 // var value = ArrName['key_1']; //<- ArrName is the name of your array
@@ -17,35 +18,34 @@ for (let i = 1; i < 19; i++) {
 console.log(agee)
 let sex1 = census.filter(item => {return item.Sex === 1})
 let sex2 = census.filter(item => {return item.Sex === 2})
+let sex11900 = sex1.filter(item => {return item.Year === 1900})
+let sex21900 = sex2.filter(item => {return item.Year === 1900})
+let sex12000  = sex1.filter(item => {return item.Year === 1900})
+let sex22000  = sex2.filter(item => {return item.Year === 1900})
 
 const compData = {
-  name: "sexComp",
+  name: "1900sex1",
   color: "#ffffff",
-  items: sex1.filter(item => {return item.Year === 1900})
+  items: sex11900.map((item) => ({ ...item, value: item.People }))
 };
 
-const sex11900Data = {
-  name: "1900sex1",
-  color: "#d53e4f",
-  items: sex1.filter(item => {return item.Year === 1900})
-};
-console.log(sex11900Data);
+console.log("compData",compData);
 
 const sex21900Data = {
   name: "1900sex2",
   color: "#5e4fa2",
-  items: sex2.filter(item => {return item.Year === 1900})
+  items: sex21900.map((item) => ({ ...item, value: item.People }))
 };
 
 const sex12000Data = {
   name: "2000sex1",
   color: "#d53e4f",
-  items: sex1.filter(item => {return item.Year === 2000})
+  items: sex12000.map((item) => ({ ...item, value: item.People }))
 };
 const sex22000Data = {
   name: "2000sex2",
-  color: "#5e4fa2",
-  items: sex2.filter(item => {return item.Year === 2000})
+  color: "pink",
+  items: sex22000.map((item) => ({ ...item, value: item.People }))
 };
 const dimensions = {
   width: 600,
@@ -60,10 +60,10 @@ const dimensions = {
 
 export default function App() {
   const [selectedItems, setSelectedItems] = React.useState([]);
-  const legendData = [compData, sex11900Data, sex21900Data,sex12000Data,sex22000Data];
+  const legendData = [compData,  sex21900Data,sex12000Data,sex22000Data];
   const chartData = [
     compData,
-    ...[sex11900Data, sex21900Data,sex12000Data,sex22000Data].filter((d) => selectedItems.includes(d.name))
+    ...[ sex21900Data,sex12000Data,sex22000Data].filter((d) => selectedItems.includes(d.name))
   ];
   const onChangeSelection = (name) => {
     const newSelectedItems = selectedItems.includes(name)
@@ -83,8 +83,12 @@ export default function App() {
         onChange={onChangeSelection}
       />
       <MultilineChart data={chartData} dimensions={dimensions} />
+      <p>The background is selected as gray to emphasis the text and the graph. <br/>The text is selected as white to show contrast. <br/>
+      The range for x axis and y axis are selected to cover all ranges. <br/>And only 4 grid line for y axis is chosen for clearity </p>
+
     </div>
   );
+
 }
 
 // function App() {
