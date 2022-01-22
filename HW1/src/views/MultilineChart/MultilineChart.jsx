@@ -13,7 +13,7 @@ const MultilineChart = ({ data = [], dimensions = {} }) => {
   React.useEffect(() => {
     const xScale = d3
       .scaleTime()
-      .domain(d3.extent(data[0].items, (d) => d.date))
+      .domain(d3.extent(data[0].items, (d) => d.Age))
       .range([0, width]);
     const yScale = d3
       .scaleLinear()
@@ -60,7 +60,7 @@ const MultilineChart = ({ data = [], dimensions = {} }) => {
     // Draw the lines
     const line = d3
       .line()
-      .x((d) => xScale(d.date))
+      .x((d) => xScale(d.Age))
       .y((d) => yScale(d.value));
     const lines = svg
       .selectAll(".line")
