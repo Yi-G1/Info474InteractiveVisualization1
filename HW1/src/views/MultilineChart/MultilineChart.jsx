@@ -12,7 +12,7 @@ const MultilineChart = ({ data = [], dimensions = {} }) => {
 
   React.useEffect(() => {
     const xScale = d3
-      .scaleTime()
+      .scaleLinear()
       .domain(d3.extent(data[0].items, (d) => d.Age))
       .range([0, width]);
     const yScale = d3

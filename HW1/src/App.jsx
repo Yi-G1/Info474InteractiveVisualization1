@@ -20,15 +20,20 @@ let sex1 = census.filter(item => {return item.Sex === 1})
 let sex2 = census.filter(item => {return item.Sex === 2})
 let sex11900 = sex1.filter(item => {return item.Year === 1900})
 let sex21900 = sex2.filter(item => {return item.Year === 1900})
-let sex12000  = sex1.filter(item => {return item.Year === 1900})
-let sex22000  = sex2.filter(item => {return item.Year === 1900})
+let sex12000  = sex1.filter(item => {return item.Year === 2000})
+let sex22000  = sex2.filter(item => {return item.Year === 2000})
 
 const compData = {
-  name: "1900sex1",
+  name: "2000sex1",
   color: "#ffffff",
-  items: sex11900.map((item) => ({ ...item, value: item.People }))
+  items: sex12000.map((item) => ({ ...item, value: item.People }))
 };
 
+// const compData = {
+//   name: "1900sex1",
+//   color: "#ffffff",
+//   items: sex11900.map((item) => ({ ...item, value: item.People }))
+// };
 console.log("compData",compData);
 
 const sex21900Data = {
@@ -37,10 +42,10 @@ const sex21900Data = {
   items: sex21900.map((item) => ({ ...item, value: item.People }))
 };
 
-const sex12000Data = {
-  name: "2000sex1",
+const sex11900Data = {
+  name: "1900sex1",
   color: "#d53e4f",
-  items: sex12000.map((item) => ({ ...item, value: item.People }))
+  items: sex11900.map((item) => ({ ...item, value: item.People }))
 };
 const sex22000Data = {
   name: "2000sex2",
@@ -60,10 +65,10 @@ const dimensions = {
 
 export default function App() {
   const [selectedItems, setSelectedItems] = React.useState([]);
-  const legendData = [compData,  sex21900Data,sex12000Data,sex22000Data];
+  const legendData = [compData,  sex22000Data, sex11900Data,sex21900Data];
   const chartData = [
     compData,
-    ...[ sex21900Data,sex12000Data,sex22000Data].filter((d) => selectedItems.includes(d.name))
+    ...[sex22000Data, sex11900Data,sex21900Data].filter((d) => selectedItems.includes(d.name))
   ];
   const onChangeSelection = (name) => {
     const newSelectedItems = selectedItems.includes(name)
@@ -85,7 +90,7 @@ export default function App() {
       <MultilineChart data={chartData} dimensions={dimensions} />
       <p>The background is selected as gray to emphasis the text and the graph. <br/>The text is selected as white to show contrast. <br/>
       The range for x axis and y axis are selected to cover all ranges. <br/>And only 4 grid line for y axis is chosen for clearity </p>
-
+      <p>Credit: My graph and code was inspired from the following link https://codesandbox.io/s/d3react-multiline-chart-version-3-animation-o5y57</p>
     </div>
   );
 
