@@ -79,19 +79,47 @@ export default function App() {
 
   return (
     <div className="App">
-        <h1>Assignment 1 </h1>
-        <p>In this webpage, we will draw a multiline graph to study the change between different years, sex, and age.</p>
+        <h1>HW 2 </h1>
+        <p className = "Intro">
+        <br/>
+Gender equality is a topic that have been constantly discussed in our daily life.
+        In the workforce, many people are still debating whether or not there are bias towards one side or another, and how significant is this bias.
+There are many standards people use to measure bias, and some of them may not be as meaningful.
+        For example, one such standard would be showing the paycheck of women on average compare to men.
+        There are people arguing that women in general are paid less than men,  but others counter this argument by stating that most very low wages jobs are mostly male workers than female.
+        <br/><br/>
+        For the scope of this project, we will look at 3 standards, breifly examine them, and come up with a conclusion on our own.
+        More specifically, we will study the following question:
+        <br/><br/>
+        1. Are there bias in XXX (a given standard) around the world/In the US?
+          If there are, is it getting better or worse overtime?
+          <br/><br/>
+        2. Are data obtained from the datasets accurate? Will using different datasets come up with different conclusion? Does it fit what people believe and spread online?
+        <br/><br/>
+        3. How does education influence gender equality with in different countries? Does more educated means less bias?
+        <br/>         <br/>
 
-      <Legend
-        data={legendData}
-        selectedItems={selectedItems}
-        onChange={onChangeSelection}
-      />
-      <MultilineChart data={chartData} dimensions={dimensions} />
-      <p>The background is selected as gray to emphasis the text and the graph. <br/>The text is selected as white to show contrast. <br/>
-      The range for x axis and y axis are selected to cover all ranges. <br/>And only 4 grid line for y axis is chosen for clearity </p>
-      <p>Credit: My graph and code was inspired from the following link https://codesandbox.io/s/d3react-multiline-chart-version-3-animation-o5y57</p>
+         </p>
+         <br/>
+
+         <p>Firstly, let us study a dataset contains information around the world</p>
+
+        <svg/>
+
+
     </div>
+
+        // <p></p>
+
+      // <Legend
+      //   data={legendData}
+      //   selectedItems={selectedItems}
+      //   onChange={onChangeSelection}
+      // />
+      // <MultilineChart data={chartData} dimensions={dimensions} />
+      // <p>The background is selected as gray to emphasis the text and the graph. <br/>The text is selected as white to show contrast. <br/>
+      // The range for x axis and y axis are selected to cover all ranges. <br/>And only 4 grid line for y axis is chosen for clearity </p>
+      // <p>Credit: My graph and code was inspired from the following link https://codesandbox.io/s/d3react-multiline-chart-version-3-animation-o5y57</p>
   );
 
 }

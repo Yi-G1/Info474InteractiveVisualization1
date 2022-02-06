@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  /* The code that you need to copy */
+position: absolute;
+left: 0px;
+right: 0px;
+top: 0px;
 }
 
 .App-logo {
@@ -27,6 +32,14 @@
 .App-link {
   color: #61dafb;
 }
+
+p.Intro{
+  text-align:left;
+  margin-left: 20%;
+  margin-right: 20%;
+  border: dotted 2px;
+}
+
 
 @keyframes App-logo-spin {
   from {
