@@ -13,13 +13,13 @@ const MultilineChart = ({ data = [], dimensions = {} }) => {
   React.useEffect(() => {
     const xScale = d3
       .scaleLinear()
-      .domain(d3.extent(data[0].items, (d) => d.Age))
+      .domain(d3.extent(data[0].items, (d) => d.Time))
       .range([0, width]);
     const yScale = d3
       .scaleLinear()
       .domain([
-        d3.min(data[0].items, (d) => d.value) - 50,
-        d3.max(data[0].items, (d) => d.value) + 50
+        -5,
+        45
       ])
       .range([height, 0]);
     // Create root container where we will append all other chart elements
@@ -60,7 +60,7 @@ const MultilineChart = ({ data = [], dimensions = {} }) => {
     // Draw the lines
     const line = d3
       .line()
-      .x((d) => xScale(d.Age))
+      .x((d) => xScale(d.Time))
       .y((d) => yScale(d.value));
     const lines = svg
       .selectAll(".line")

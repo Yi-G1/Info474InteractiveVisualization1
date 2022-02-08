@@ -1,10 +1,13 @@
-import React from "react";
+import React,  {useState,useEffect,Component, Fragment}  from "react";
 import MultilineChart from "./views/MultilineChart";
 import Legend from "./views/Legend";
-import { scaleLinear, scaleBand, extent, line, symbol, csv } from "d3";
+import { max } from 'd3-array';
+import { scaleLinear, scaleBand,scaleOrdinal , extent, line, symbol, csv } from "d3";
 import { AxisLeft, AxisBottom } from "@visx/axis";
+import { schemeCategory10 } from 'd3-scale-chromatic';
+import { NodeGroup } from 'react-move';
+//npm install react-move
 import { uniq } from "lodash";
-import { useState } from 'react'
 import logo from './logo.svg'
 import getgwg from "./gender_wage_gap.js";
 import census from "./census.js";
@@ -14,6 +17,9 @@ import './App.css'
 // var value = ArrName['key_1']; //<- ArrName is the name of your array
 let gwg= getgwg();
 
+
+
+
 console.log("gwg", gwg);
 let sex1 = census.filter(item => {return item.Sex === 1})
 let sex2 = census.filter(item => {return item.Sex === 2})
@@ -22,41 +28,38 @@ let sex21900 = sex2.filter(item => {return item.Year === 1900})
 let sex12000  = sex1.filter(item => {return item.Year === 2000})
 let sex22000  = sex2.filter(item => {return item.Year === 2000})
 
+// data wrangling for graph 1 and 2
+let world2018data = gwg.filter(item => {return item.Time === '2018'})
+let world2018datamid = world2018data.filter(item => {return item.IND === 'EMP9_5'})
+
+console.log("world2018datamid",world2018datamid);
+
+
 // data wrangling for graph 3
 let usdata = gwg.filter(item => {return item.COU === 'USA'})
 let ustop10 = usdata.filter(item => {return item.IND === 'EMP9_9'})
 let usbot10 = usdata.filter(item => {return item.IND === 'EMP9_1'})
 let usmid = usdata.filter(item => {return item.IND === 'EMP9_5'})
-console.log("usData",usdata);
-console.log("usmid",usmid);
+// console.log("usData",usdata);
+// console.log("usmid",usmid);
 
 const compData = {
-  name: "2000sex1",
+  name: "top10USA",
   color: "#ffffff",
-  items: sex12000.map((item) => ({ ...item, value: item.People }))
+  items: ustop10.map((item) => ({ ...item, value: item.Value }))
 };
 
-// const compData = {
-//   name: "1900sex1",
-//   color: "#ffffff",
-//   items: sex11900.map((item) => ({ ...item, value: item.People }))
-// };
 
-const sex21900Data = {
-  name: "1900sex2",
+const usB10Data = {
+  name: "Bot10USA",
   color: "#5e4fa2",
-  items: sex21900.map((item) => ({ ...item, value: item.People }))
+  items: usbot10.map((item) => ({ ...item, value: item.Value }))
 };
 
-const sex11900Data = {
-  name: "1900sex1",
+const usMid10Data = {
+  name: "MedianUSA",
   color: "#d53e4f",
-  items: sex11900.map((item) => ({ ...item, value: item.People }))
-};
-const sex22000Data = {
-  name: "2000sex2",
-  color: "pink",
-  items: sex22000.map((item) => ({ ...item, value: item.People }))
+  items: usmid.map((item) => ({ ...item, value: item.Value }))
 };
 const dimensions = {
   width: 600,
@@ -69,18 +72,59 @@ const dimensions = {
   }
 };
 
+//-------------------------------------------
+//function get barchart
+const Chart = ({ children, height, width }) => (
+  <svg viewBox={`0 0 ${width} ${height}`} height={height} width={width}>
+    {children}
+  </svg>
+)
+
+const Bar = ({ fill = '#000', x, y, height, width }) => (
+  <rect fill={fill} x={x} y={y} height={height} width={width} />
+)
+
+const greatestValue = values =>
+  values.reduce((acc, cur) => (cur > acc ? cur : acc), -Infinity)
+
+const BarChart = ({ data }) => {
+  const barWidth = 20
+  const barMargin = 5
+  const width = data.length * (barWidth + barMargin)
+  const height = greatestValue(data.map(item => item.Value))*2
+
+  return (
+    <Chart height={height} width={width}>
+      {data.map((item, index) => (
+        <Bar
+          key={item.Time}
+          fill="teal"
+          x={index * (barWidth + barMargin)}
+          y={height - item.Value}
+          width={barWidth}
+          height={item.Value}
+        />
+      ))}
+    </Chart>
+  )
+}
+// Start app
+const widthScale = scaleLinear().domain([0, 34.1]).range([0, 320]);
+// const colorScale = scaleOrdinal(schemeCategory10);
+
 export default function App() {
   const [selectedItems, setSelectedItems] = React.useState([]);
-  const legendData = [compData,  sex22000Data, sex11900Data,sex21900Data];
+  const legendData = [compData,  usB10Data,usMid10Data];
   const chartData = [
     compData,
-    ...[sex22000Data, sex11900Data,sex21900Data].filter((d) => selectedItems.includes(d.name))
+    ...[usB10Data,usMid10Data].filter((d) => selectedItems.includes(d.name))
   ];
   const onChangeSelection = (name) => {
     const newSelectedItems = selectedItems.includes(name)
       ? selectedItems.filter((item) => item !== name)
       : [...selectedItems, name];
     setSelectedItems(newSelectedItems);
+
   };
 
   return (
@@ -92,7 +136,7 @@ Gender equality is a topic that have been constantly discussed in our daily life
         In the workforce, many people are still debating whether or not there are bias towards one side or another, and how significant is this bias.
 There are many standards people use to measure bias, and some of them may not be as meaningful.
         For example, one such standard would be showing the paycheck of women on average compare to men.
-        There are people arguing that women in general are paid less than men,  but others counter this argument by stating that most very low wages jobs are mostly male workers than female.
+        There are people arguing that women in general are paid less than men,  but others counter this argument by stating that most very low Value jobs are mostly male workers than female.
         <br/><br/>
         For the scope of this project, we will look at 3 standards, breifly examine them, and come up with a conclusion on our own.
         More specifically, we will study the following question:
@@ -111,20 +155,47 @@ There are many standards people use to measure bias, and some of them may not be
          <p>Firstly, let us study a dataset contains information around the world. Note that the gender wage gap data is obtained from the data source and will be verified by other datasets in later homework.</p>
         <br/>
         <br/>
-        <p>1. We first study geographically what bias look like around the world.</p>
-         <svg/>
-         <p>2. Now we want to study how gender wage gap changed in different countries by year. </p>
+        <p>1. We first study geographically what bias look like around the world in the year 2018.</p>
+
+
+         <p>2. We will look at the same data from a different perspective. </p>
+         <table>
+                 <thead>
+                   <tr>
+                     <th width="20%">Country</th>
+                     <th width="20%"> Wage Gap (Male>Female)</th>
+                     <th></th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   {world2018datamid.map(d => (
+                     <tr key={d.Country}>
+                       <td>
+                         {d.Country}
+                       </td>
+                       <td>
+                         {d.Value}
+                       </td>
+                       <td>
+                         <svg height="50">
+                           <rect width={widthScale(d.Value)} height="50" fill={'pink'} />
+                         </svg>
+
+                       </td>
+                     </tr>
+                   ))}
+                 </tbody>
+               </table>
+
+        <p>This shows us that Costa Rica	have the least wage-gap difference whereas Korea has most wage-gap difference.</p>
+        <p>3. Let us take a deeper look into the US--change of gender gap for top 10, bottom 10 and median  over time. </p>
         <Legend
           data={legendData}
           selectedItems={selectedItems}
           onChange={onChangeSelection}
         />
         <MultilineChart data={chartData} dimensions={dimensions} />
-        <p>The background is selected as gray to emphasis the text and the graph. <br/>The text is selected as white to show contrast. <br/>
-        The range for x axis and y axis are selected to cover all ranges. <br/>And only 4 grid line for y axis is chosen for clearity </p>
-
-        <p>3. Let us take a deeper look into the US--change of gender wage on top and on bottom over time. </p>
-        <svg/>
+        <p>80% of the gender gap in the US lie in between the white line and the purple line. <br/>The gender gap problem in the US did reduce in general.(Also considering the inflation problem) <br/> </p>
 
         <p>4. The average gender wage difference by countries.  The county with most extreme bias towards male and female are: </p>
         <svg/>
