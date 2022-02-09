@@ -11,13 +11,14 @@ import { uniq } from "lodash";
 import logo from './logo.svg'
 import getgwg from "./gender_wage_gap.js";
 import census from "./census.js";
-import "./style.css";
-import './App.css'
 import Graph4 from "./graph4.jsx";
 import Graph5 from "./graph5.jsx";
 import Graph6 from "./graph6.jsx";
 import Graph7 from "./graph7.jsx";
 import Graph8 from "./graph8.jsx";
+import WorldMap from "./WorldMap.jsx"
+import "./style.css";
+import './App.css'
 
 
 // var value = ArrName['key_1']; //<- ArrName is the name of your array
@@ -38,9 +39,6 @@ let ustop10 = usdata.filter(item => {return item.IND === 'EMP9_9'})
 let usbot10 = usdata.filter(item => {return item.IND === 'EMP9_1'})
 let usmid = usdata.filter(item => {return item.IND === 'EMP9_5'})
 
-
-// console.log("usData",usdata);
-// console.log("usmid",usmid);
 
 const compData = {
   name: "top10USA",
@@ -70,7 +68,6 @@ const dimensions = {
     left: 60
   }
 };
-
 
 // Start app
 const widthScale = scaleLinear().domain([0, 34.1]).range([0, 320]);
@@ -128,6 +125,7 @@ There are many standards people use to measure bias, and some of them may not be
         <br/>
         <br/>
         <p>1. We first study geographically what bias look like around the world in the year 2018.</p>
+          <WorldMap/>
 
 
          <p>2. We will look at the same data from a different perspective. </p>

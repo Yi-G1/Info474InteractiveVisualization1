@@ -5,8 +5,6 @@ let gwg= getgwg();
 // data wrangling for graph 5
 let worldAvgData = gwg.filter(item => {return item.IND === 'EMP9_5'})
 worldAvgData = worldAvgData.map((item) => ({ ...item, Value: parseFloat(item.Value) }))
-
-console.log("worldAvgData",worldAvgData);
 // let temp = worldAvgData.reduce(  (m, {Time, Value}) => m.set(Time, (m.Time) || 0) + Value))
 // console.log("temp", temp);
 let times = ['2000','2005','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019']
@@ -14,17 +12,14 @@ let countriesCount = []
 for (let i = 0; i < times.length; i++) {
   countriesCount.push(worldAvgData.filter(item => {return item.Time === times[i] && item.Value != 'Nan'}).length);
 }
-console.log("countriesCount",countriesCount);
 
 const dataGraph5 = Array.from(worldAvgData.reduce(
   (m, {Time, Value}) => m.set(Time, (m.get(Time) || 0) + Value), new Map
 ), ([Time, Value]) => ({Time, Value}));
-console.log("dataGraph5",dataGraph5);
 
 for (let i = 0; i < times.length; i++) {
   dataGraph5[i].Value = dataGraph5[i].Value/countriesCount[i];
 }
-console.log("dataGraph5",dataGraph5);
 
 class Graph5 extends Component {
   render() {

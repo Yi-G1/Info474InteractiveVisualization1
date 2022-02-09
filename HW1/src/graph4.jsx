@@ -9,7 +9,6 @@ let countryList =[...new Set(worldAvgData.map(item => item.Country))];
 const dataGraph4 = Array.from(worldAvgData.reduce(
   (m, {Country, Value}) => m.set(Country, (m.get(Country) || 0) + Value), new Map
 ), ([Country, Value]) => ({Country, Value}));
-console.log("dataGraph4",dataGraph4);
 class Graph4 extends Component {
   render() {
     const SVG_WIDTH = 2500;

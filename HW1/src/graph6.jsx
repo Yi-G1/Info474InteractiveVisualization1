@@ -17,7 +17,7 @@ class Graph6 extends Component {
   render() {
       return (
         <svg height = "500" width = "500" viewBox="0 0 500 500" className = 'graph6'>
-          <circle class='first' stroke-dasharray="calc(100 * 1570.8/100) 1570.8"></circle>
+          <circle className='first' strokeDasharray="calc(100 * 1570.8/100) 1570.8"></circle>
            <text x="150" y="100" fill="#fff">Pay More for Male 100%</text>
         </svg>
       );

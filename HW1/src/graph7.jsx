@@ -18,8 +18,8 @@ class Graph7 extends Component {
 
       return (
         <svg height = "500" width = "500" viewBox="0 0 500 500" className = 'graph6'>
-          <circle className='first' stroke-dasharray="calc(29/31 * 1570.8) 1570.8"></circle>
-          <circle className='second' stroke-dasharray="calc(2/31 * 1570.8) 1570.8"></circle>
+          <circle className='first' strokeDasharray="calc(29/31 * 1570.8) 1570.8"></circle>
+          <circle className='second' strokeDasharray="calc(2/31 * 1570.8) 1570.8"></circle>
            <text x="150" y="100" fill="#fff">Pay More for Male 93.5%</text>
            <text x="270" y="300" fill="purple">Pay More for Female 6.5%</text>
 

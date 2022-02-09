@@ -11,6 +11,9 @@ p{
   background-color: #000000cc;
   border: 1px solid white;
   display: inline-block;
+  font-family: sans-serif;
+  text-align: center;
+
 }
 .legendContainer {
   display: flex;
@@ -18,4 +21,38 @@ p{
 }
 .checkbox {
   margin: 10px;
+}
+html {
+  font-family: system-ui, sans-serif;
+  font-size: 1.25rem;
+}
+
+body {
+  margin: 0;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.wrap {
+  padding: 20px;
+}
+.detail {
+  position: absolute;
+  pointer-events: none;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid grey;
+  transform: translate(10px, 10px);
+}
+path.country:hover {
+  stroke: #0059b3;
+  stroke-width: 2px;
+}
+
+path:focus {
+  outline: none;
 }
