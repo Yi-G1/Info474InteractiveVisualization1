@@ -13,6 +13,12 @@ import getgwg from "./gender_wage_gap.js";
 import census from "./census.js";
 import "./style.css";
 import './App.css'
+import Graph4 from "./graph4.jsx";
+import Graph5 from "./graph5.jsx";
+import Graph6 from "./graph6.jsx";
+import Graph7 from "./graph7.jsx";
+import Graph8 from "./graph8.jsx";
+
 
 // var value = ArrName['key_1']; //<- ArrName is the name of your array
 let gwg= getgwg();
@@ -21,18 +27,9 @@ let gwg= getgwg();
 
 
 console.log("gwg", gwg);
-let sex1 = census.filter(item => {return item.Sex === 1})
-let sex2 = census.filter(item => {return item.Sex === 2})
-let sex11900 = sex1.filter(item => {return item.Year === 1900})
-let sex21900 = sex2.filter(item => {return item.Year === 1900})
-let sex12000  = sex1.filter(item => {return item.Year === 2000})
-let sex22000  = sex2.filter(item => {return item.Year === 2000})
-
 // data wrangling for graph 1 and 2
 let world2018data = gwg.filter(item => {return item.Time === '2018'})
 let world2018datamid = world2018data.filter(item => {return item.IND === 'EMP9_5'})
-
-console.log("world2018datamid",world2018datamid);
 
 
 // data wrangling for graph 3
@@ -40,6 +37,8 @@ let usdata = gwg.filter(item => {return item.COU === 'USA'})
 let ustop10 = usdata.filter(item => {return item.IND === 'EMP9_9'})
 let usbot10 = usdata.filter(item => {return item.IND === 'EMP9_1'})
 let usmid = usdata.filter(item => {return item.IND === 'EMP9_5'})
+
+
 // console.log("usData",usdata);
 // console.log("usmid",usmid);
 
@@ -72,42 +71,7 @@ const dimensions = {
   }
 };
 
-//-------------------------------------------
-//function get barchart
-const Chart = ({ children, height, width }) => (
-  <svg viewBox={`0 0 ${width} ${height}`} height={height} width={width}>
-    {children}
-  </svg>
-)
 
-const Bar = ({ fill = '#000', x, y, height, width }) => (
-  <rect fill={fill} x={x} y={y} height={height} width={width} />
-)
-
-const greatestValue = values =>
-  values.reduce((acc, cur) => (cur > acc ? cur : acc), -Infinity)
-
-const BarChart = ({ data }) => {
-  const barWidth = 20
-  const barMargin = 5
-  const width = data.length * (barWidth + barMargin)
-  const height = greatestValue(data.map(item => item.Value))*2
-
-  return (
-    <Chart height={height} width={width}>
-      {data.map((item, index) => (
-        <Bar
-          key={item.Time}
-          fill="teal"
-          x={index * (barWidth + barMargin)}
-          y={height - item.Value}
-          width={barWidth}
-          height={item.Value}
-        />
-      ))}
-    </Chart>
-  )
-}
 // Start app
 const widthScale = scaleLinear().domain([0, 34.1]).range([0, 320]);
 // const colorScale = scaleOrdinal(schemeCategory10);
@@ -124,6 +88,14 @@ export default function App() {
       ? selectedItems.filter((item) => item !== name)
       : [...selectedItems, name];
     setSelectedItems(newSelectedItems);
+    const series = { type: "bar" };
+    const graph4axes = React.useMemo(
+      () => [
+        { primary: true, type: "time", position: "bottom" },
+        { type: "linear", position: "left" }
+      ],
+      []
+    );
 
   };
 
@@ -197,20 +169,25 @@ There are many standards people use to measure bias, and some of them may not be
         <MultilineChart data={chartData} dimensions={dimensions} />
         <p>80% of the gender gap in the US lie in between the white line and the purple line. <br/>The gender gap problem in the US did reduce in general.(Also considering the inflation problem) <br/> </p>
 
-        <p>4. The average gender wage difference by countries.  The county with most extreme bias towards male and female are: </p>
-        <svg/>
-
-        <p>5.The average gender wage difference by year -- have we get better each year</p>
-        <svg/>
+        <p>4. The average gender wage difference by countries.  </p>
+        <Graph4/>
+        <p>Thoughout all years, the country with most extreme wage gap is Korea, and interestingly, no country is having negative gaps.</p>
+        <p>5.The average gender wage difference by year -- have we get better each year?</p>
+        <Graph5/>
+        <p>Our world has less gender gap on average compare to a decade ago. But not much progress have been made in general in the last 5 years.</p>
 
         <p>6. In 2002, the percentage of countries bias towards women/man.</p>
-        <svg/>
+        <Graph6/>
+        <p>Of 19 countries where data is collected, 19 of them have positive wage gap.</p>
 
         <p>7. In 2018, the percentage of countries bias towards women/man.</p>
-        <svg/>
+        <Graph7/>
+        <p>Of 31 countries where data is collected, 29 of them have positive wage gap. <br/>It is wonderful to see this difference.</p>
 
-        <p>8. In 2018, the percentage of countries bias towards women/man.</p>
-        <svg/>
+        <p>8. In 2019, the percentage of countries bias towards women/man.</p>
+        <Graph8/>
+        <p>Unfortunately，of 12 countries where data is collected, all of them have positive wage gap. <br/>
+        This is an excellent example to that the pattern obtained from the dataset could be unreliable/inconclusive due to data vairation and sampling sizes.</p>
 
     </div>
 

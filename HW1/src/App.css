@@ -70,6 +70,18 @@ top: 0px;
   color: #61dafb;
 }
 
+.graph4{
+  font-size:0.75rem;
+  color:white;
+  fill: white;
+
+}
+.graph4 rect {
+  fill: tale;
+}
+
+}
+
 p.Intro{
   text-align:left;
   margin-left: 20%;
@@ -89,4 +101,30 @@ p.Intro{
 
 button {
   font-size: calc(10px + 2vmin);
+}
+
+.graph6 svg {
+  width: 200px;
+  border-radius: 50%;
+  background: #3f51b5;
+  transform: rotate(-90deg);
+}
+.graph6 svg text {
+  transform: rotate(90deg);
+  font-size:5px;
+}
+.graph6 circle {
+  fill: none;
+  stroke-width: 250;
+  r: 100;
+  cx: 250;
+  cy: 250;
+}
+
+.graph6 circle.first {
+  stroke: #00bcd4;
+
+}
+.graph6 circle.second {
+  stroke: #ffeb3b;
 }
