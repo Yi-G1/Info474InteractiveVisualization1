@@ -19,7 +19,27 @@ import Graph8 from "./graph8.jsx";
 import WorldMap from "./WorldMap.jsx"
 import "./style.css";
 import './App.css'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCO9ZxuJA_fQH_AHvQJ5FmkowhKS5QV-54",
+  authDomain: "projecthw2-7ba12.firebaseapp.com",
+  projectId: "projecthw2-7ba12",
+  storageBucket: "projecthw2-7ba12.appspot.com",
+  messagingSenderId: "297602431200",
+  appId: "1:297602431200:web:649b86e6ee08405de4f885",
+  measurementId: "G-6VLEKQ89DY"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 // var value = ArrName['key_1']; //<- ArrName is the name of your array
 let gwg= getgwg();
