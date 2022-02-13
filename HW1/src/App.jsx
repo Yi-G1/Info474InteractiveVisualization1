@@ -123,11 +123,11 @@ export default function App() {
         <br/>
 Gender equality is a topic that have been constantly discussed in our daily life.
         In the workforce, many people are still debating whether or not there are bias towards one side or another, and how significant is this bias.
-There are many standards people use to measure bias, and some of them may not be as meaningful.
+There are many standards people use to measure bias, such as average age, average income, population, etc. Arguably, each one of these standards only show one aspect of the real life, and some of them may not be as meaningful.
         For example, one such standard would be showing the paycheck of women on average compare to men.
         There are people arguing that women in general are paid less than men,  but others counter this argument by stating that most very low Value jobs are mostly male workers than female.
         <br/><br/>
-        For the scope of this project, we will look at 3 standards, breifly examine them, and come up with a conclusion on our own.
+        For the scope of this project (which would be continued after HW2 by my self), we will look at several standards **(hw2 only look at wage gap)**, breifly examine them, and come up with a conclusion on our own.
         More specifically, we will study the following question:
         <br/><br/>
         1. Are there bias in XXX (a given standard) around the world/In the US?
@@ -141,12 +141,14 @@ There are many standards people use to measure bias, and some of them may not be
          </p>
          <br/>
 
-         <p>Firstly, let us study a dataset contains information around the world. Note that the gender wage gap data is obtained from the data source and will be verified by other datasets in later homework.</p>
+         <p>Firstly, let us study a dataset contains information around the world. Note that the gender wage gap data is obtained from the data source and will be verified by other datasets in later homeworks or by my own investigation.</p>
         <br/>
         <br/>
         <p>1. We first study geographically what bias look like around the world in the year 2018.</p>
           <WorldMap/>
 
+          <p>From this graph, it is clear to us that this dataset is only focused in the N.A. and E.U. regions. Countries such as South Africa, China, India, were not included.</p>
+          <p>Thus, when we comeup with a conclusion from evaluate the data in the latter part, we should take the conclusion with a grain of salt.</p>
 
          <p>2. We will look at the same data from a different perspective. </p>
          <table>
