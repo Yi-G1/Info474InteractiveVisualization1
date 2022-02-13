@@ -13,9 +13,9 @@ import getgwg from "./gender_wage_gap.js";
 import census from "./census.js";
 import Graph4 from "./graph4.jsx";
 import Graph5 from "./graph5.jsx";
-import Graph6 from "./graph6.jsx";
-import Graph7 from "./graph7.jsx";
-import Graph8 from "./graph8.jsx";
+import Graph6 from "./graph6";
+import Graph7 from "./graph7";
+import Graph8 from "./graph8";
 import WorldMap from "./WorldMap.jsx"
 import "./style.css";
 import './App.css'
