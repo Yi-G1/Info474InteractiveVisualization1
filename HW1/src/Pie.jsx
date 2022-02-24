@@ -1,35 +1,21 @@
-import React, { Component } from "react";
-import getgwg from "./gender_wage_gap.js";
+// adapted from https://bl.ocks.org/mbostock/3887235, agpl3
 import { scaleOrdinal, arc, pie, schemeSpectral } from "d3";
-
-let gwg= getgwg();
-
-// data wrangling for graph 4
-let world2018data = gwg.filter(item => {return item.Time === '2018'})
-let world2018datamid = world2018data.filter(item => {return item.IND === 'EMP9_1'})
-let world2018dataPos = world2018datamid.filter(item => {return item.Value >0})
-
-// worldAvgData = worldAvgData.map((item) => ({ ...item, Value: parseFloat(item.Value)/11 }))
-// let countryList =[...new Set(worldAvgData.map(item => item.Country))];
-// const dataGraph4 = Array.from(worldAvgData.reduce(
-//   (m, {Country, Value}) => m.set(Country, (m.get(Country) || 0) + Value), new Map
-// ), ([Country, Value]) => ({Country, Value}));
-// console.log("dataGraph4",dataGraph4);
 const populationData = [
-  { label: "Pay More For Male", val: 93.5 },
-  { label: "Pay More For Female", val: 7.5 },
-    { label: "", val: 0 },
-      { label: "", val: 0} 
-
+  { age: "<5", population: 2704659 },
+  { age: "5-13", population: 4499890 },
+  { age: "14-17", population: 2159981 },
+  { age: "18-24", population: 3853788 },
+  { age: "25-44", population: 14106543 },
+  { age: "45-64", population: 8819342 },
+  { age: "≥65", population: 612463 },
 ];
-console.log("lenght", populationData.length);
-const Graph7 = ({ width = 400, height = 400 }) => {
+const Pie = ({ width = 400, height = 400 }) => {
   const radius = Math.min(width, height) / 2;
   const color = scaleOrdinal(schemeSpectral[populationData.length]);
   const pieGenerator = pie()
     .sort(null)
     .value((d) => {
-      return d.val;
+      return d.population;
     });
   const path = arc()
     .outerRadius(radius - 10)
@@ -52,10 +38,10 @@ const Graph7 = ({ width = 400, height = 400 }) => {
                   fill="#000"
                 >
                   <tspan fontWeight={700} x={0}>
-                    {pieSlice.data.label}
+                    {pieSlice.data.age}
                   </tspan>
                   <tspan x={0} y={`${1.1}em`}>
-                    {pieSlice.data.val}
+                    {pieSlice.data.population}
                   </tspan>
                 </text>
               </g>
@@ -66,4 +52,4 @@ const Graph7 = ({ width = 400, height = 400 }) => {
     </div>
   );
 };
-export default Graph7;
+export default Pie;

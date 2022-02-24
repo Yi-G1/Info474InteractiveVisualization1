@@ -9,6 +9,7 @@ import { NodeGroup } from 'react-move';
 //npm install react-move
 import { uniq } from "lodash";
 import logo from './logo.svg'
+// import { PieChart, Pie} from 'recharts';
 import getgwg from "./gender_wage_gap.js";
 import census from "./census.js";
 import Graph4 from "./graph4.jsx";
@@ -16,6 +17,9 @@ import Graph5 from "./graph5.jsx";
 import Graph6 from "./graph6";
 import Graph7 from "./graph7";
 import Graph8 from "./graph8";
+// import InteractivePie from "./InteractivePie";
+import Pie from "./Pie";
+
 import WorldMap from "./WorldMap.jsx"
 import "./style.css";
 import './App.css'
@@ -92,6 +96,12 @@ const dimensions = {
 // Start app
 const widthScale = scaleLinear().domain([0, 34.1]).range([0, 320]);
 // const colorScale = scaleOrdinal(schemeCategory10);
+const data = [
+  {name: 'Geeksforgeeks', students: 400},
+  {name: 'Technical scripter', students: 700},
+  {name: 'Geek-i-knack', students: 200},
+  {name: 'Geek-o-mania', students: 1000}
+];
 
 export default function App() {
   const [selectedItems, setSelectedItems] = React.useState([]);
@@ -118,7 +128,7 @@ export default function App() {
 
   return (
     <div className="App">
-        <h1>HW 2 </h1>
+        <h1>Project Equality </h1>
         <p className = "Intro">
         <br/>
 Gender equality is a topic that have been constantly discussed in our daily life.
