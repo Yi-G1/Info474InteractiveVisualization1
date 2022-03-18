@@ -144,7 +144,7 @@ There are many standards people use to measure bias, such as average age, averag
         For example, one such standard would be showing the paycheck of women on average compare to men.
         There are people arguing that women in general are paid less than men,  but others counter this argument by stating that most very low Value jobs are mostly male workers than female.
         <br/><br/>
-        For the scope of this project (which would be continued after HW2 by my self), we will look at several standards **(hw2 only look at wage gap)**, breifly examine them, and come up with a conclusion on our own.
+        For the scope of this project (which would be continued after finals by myself), we will look at several standards (this quarter we only look at the wage gap), breifly examine them, and come up with a conclusion on our own.
         More specifically, we will study the following question:
         <br/><br/>
         <i>1. Are there bias in XXX (a given standard) around the world/In the US?
