@@ -32,6 +32,7 @@ div{
 .legendContainer {
   display: flex;
   justify-content: center;
+  margin-right: 20%;
 }
 .checkbox {
   margin: 10px;

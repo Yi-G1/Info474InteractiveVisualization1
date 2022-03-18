@@ -4,7 +4,7 @@ const Legend = ({ data, selectedItems, onChange }) => (
   <div className="legendContainer">
     {data.map((d) => (
       <div className="checkbox" style={{ color: d.color }} key={d.name}>
-        {d.name !== "sexComp" && (
+        {d.name !== "top10USA" && (
           <input
             type="checkbox"
             value={d.name}
