@@ -12,6 +12,10 @@ import logo from './logo.svg'
 // import { PieChart, Pie} from 'recharts';
 import getgwg from "./gender_wage_gap.js";
 import census from "./census.js";
+import themes from 'devextreme/ui/themes';
+import Graph2 from "./Graph2.jsx";
+
+import Graph3 from "./Graph3.jsx";
 import Graph4 from "./graph4.jsx";
 import Graph5 from "./graph5.jsx";
 import Graph6 from "./graph6";
@@ -19,10 +23,12 @@ import Graph7 from "./graph7";
 import Graph8 from "./graph8";
 // import InteractivePie from "./InteractivePie";
 import Pie from "./Pie";
+import TableChart from "./TableChart"
 
 import WorldMap from "./WorldMap.jsx"
 import "./style.css";
 import './App.css'
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -155,70 +161,59 @@ There are many standards people use to measure bias, such as average age, averag
         <br/>
         <br/>
         <p>1. We first study geographically what bias look like around the world in the year 2018.</p>
+        <p className = "red"><i>To see detailed information about each country, zoom in and hover.</i></p>
+
           <WorldMap/>
 
-          <p>From this graph, it is clear to us that this dataset is only focused in the N.A. and E.U. regions. Countries such as South Africa, China, India, were not included.</p>
+          <p>Insight: From this graph, it is clear to us that this dataset is only focused in the N.A. and E.U. regions. Countries such as South Africa, China, India, were not included.</p>
           <p>Thus, when we comeup with a conclusion from evaluate the data in the latter part, we should take the conclusion with a grain of salt.</p>
+          <p className = "comment">Comment on design: Map is a great tool to help us visualize our data. Unfortunately, I am not able to get legends and colors to work the way I wanted to, so I added EU and US buttons to help users explore the data better.</p>
 
-         <p>2. We will look at the same data from a different perspective. </p>
-         <table>
-                 <thead>
-                   <tr>
-                     <th width="20%">Country</th>
-                     <th width="20%"> Wage Gap (Male>Female)</th>
-                     <th></th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   {world2018datamid.map(d => (
-                     <tr key={d.Country}>
-                       <td>
-                         {d.Country}
-                       </td>
-                       <td>
-                         {d.Value}
-                       </td>
-                       <td>
-                         <svg height="50">
-                           <rect width={widthScale(d.Value)} height="50" fill={'pink'} />
-                         </svg>
+        <p>2. Now Let us explore this data in a new way. Let us study how each continents perform on average. </p>
+        <p className = "red"><i>When clicked on continents, we can dig into the specific countries.</i></p>
 
-                       </td>
-                     </tr>
-                   ))}
-                 </tbody>
-               </table>
+        <div >
+        <p>The Most Biased Countries by Continent</p>
+          <Graph3/>
+        </div>
+        <p>Insight: South America have the least bias on average. Asia countries have the most. But Turkey, which is in Asia, have a very low bias compare to others.</p>
+        <p className = "comment">Comment on design: This is an improved version of my previously badly implemented bar graph. The onclick-change to subgraph made it possible to display all countries in one chart.
+        Here I chosed continent other than area and biasedness as a way to categorize countries (which I have both tried and deleted) becasue it provides more balanced subgraphs and connect well with the first graph.</p>
 
-        <p>This shows us that Costa Rica	have the least wage-gap difference whereas Korea has most wage-gap difference.</p>
-        <p>3. Let us take a deeper look into the US--change of gender gap for top 10, bottom 10 and median  over time. </p>
+        <p>3. A natural question then comes into our mind: What is cause of these differences? Could Economy status and Population size play a factor? Here we will introduce two new dimension of data--Population and GDP.</p>
+        <p className = "red"><i>Clicking on points/legend will make them disappear, hovering will show detailed data. GDP is represented by size of the points</i></p>
+
+        <Graph2/>
+        <p>Insight: Due to the multidimential data in this graph, there are many correlations one can theoretically drawn. But after playing with all the data, there seems to be no correlation between gendergap, GDP per capita, continent, and population.  </p>
+        <p className = "comment">Comment on design: My plan initially was to make a animated scatter plot that change over time. However, after concured the technicle difficulties, the graph itself just look like a fractured multiline graph with points instead of lines--the time data I have is not good enough to be an axis alone, with only 10 data points.
+        Hence the introduction of population and gdp data, which is continous and performed much better as axis.  <br/> Since there are many countries, this scattered plot feels very crowded and hard to look initially, so i introduced continent data as another dimension and onclick-remove action made it more user friendly to study the data like previous graph.
+
+        </p>
+
+        <p>4.Another question that we would love to ask is: Globally, have we have we get better in term of gender equality over years?</p>
+        <Graph5/>
+        <p> Insight: Our world has less gender gap on average compare to a decade ago. But not much progress have been made in general in the last 5 years.</p>
+
+        <p>5. After all the global view, let us focus on the US, and study whether we have improved gender equality in our country? More specifically, we would like to know whether income status such as top 10 percent, median, bottom 10 percent have a influence on how biased we are.</p>
+
+
         <Legend
           data={legendData}
           selectedItems={selectedItems}
           onChange={onChangeSelection}
         />
         <MultilineChart data={chartData} dimensions={dimensions} />
-        <p>80% of the gender gap in the US lie in between the white line and the purple line. <br/>The gender gap problem in the US did reduce in general.(Also considering the inflation problem) <br/> </p>
+        <p>Insight: People with more income does lead to more gender gap.Yet, because there is no detailed information on how gender gap is calculated, this difference could be simply due to the income difference: People earn 1 Million per year would have more gender gap than peopel earn 10K per year.  </p>
 
-        <p>4. The average gender wage difference by countries.  </p>
-        <Graph4/>
-        <p>Thoughout all years, the country with most extreme wage gap is Korea, and interestingly, no country is having negative gaps.</p>
-        <p>5.The average gender wage difference by year -- have we get better each year?</p>
-        <Graph5/>
-        <p>Our world has less gender gap on average compare to a decade ago. But not much progress have been made in general in the last 5 years.</p>
 
-        <p>6. In 2002, the percentage of countries bias towards women/man.</p>
-        <Graph6/>
-        <p>Of 19 countries where data is collected, 19 of them have positive wage gap.</p>
 
-        <p>7. In 2018, the percentage of countries bias towards women/man.</p>
+        <p>6. Another interesting question to ask is whether or not there are countries that bias towards women instead of man, and how many of them are there?</p>
+        <p>As it turns out, after some data wrangling, there arn't any county having women earn more than men consistently. That being said, in 2018, the percentage of countries bias towards men is only 93.5 percent.</p>
         <Graph7/>
-        <p>Of 31 countries where data is collected, 29 of them have positive wage gap. <br/>It is wonderful to see this difference.</p>
+        <p>Of 31 countries where data is collected, 29 of them have positive wage gap. <br/>It is wonderful to see this happening.</p>
+        <p>But in other years, all of the countires are biased towards male. </p>
 
-        <p>8. In 2019, the percentage of countries bias towards women/man.</p>
-        <Graph8/>
-        <p>Unfortunately，of 12 countries where data is collected, all of them have positive wage gap. <br/>
-        This is an excellent example to that the pattern obtained from the dataset could be unreliable/inconclusive due to data vairation and sampling sizes.</p>
-
+        <p className = "comment">Comment on design: This would be the place where no graph is better. But I decided to include the pie chart for diversity purposes.</p>
     </div>
 
         // <p></p>

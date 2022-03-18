@@ -1,3 +1,8 @@
+#chart {
+  width: 70%;
+  display: inline-block;
+  vertical-align: middle;
+}
 body {
   font-family: sans-serif;
 }
@@ -47,6 +52,14 @@ svg {
   border-radius: 5px;
   border: 1px solid grey;
   transform: translate(10px, 10px);
+}
+.red {
+  color:red;
+  opacity: 80%;
+}
+.comment {
+  color:pink;
+  opacity: 80%;
 }
 path.country:hover {
   stroke: #0059b3;

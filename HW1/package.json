@@ -7,21 +7,31 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
     "@visx/axis": "^2.6.0",
+    "ag-charts-community": "^5.1.0",
+    "ag-charts-react": "^5.1.0",
+    "bootstrap": "^4.3.1",
+    "chart.js": "^3.7.1",
+    "country-list-js": "^3.1.7",
     "d3": "^7.3.0",
     "d3-geo": "^3.0.1",
+    "devextreme": "^21.2.6",
+    "devextreme-react": "^21.2.6",
     "firebase": "^9.6.6",
+    "highcharts": "^10.0.0",
     "igniteui-react-charts": "^16.15.0",
-    "react": "^17.0.2",
-    "bootstrap": "^4.3.1",
     "jquery": "^3.3.1",
-    "react-dom": "^17.0.2",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
     "react-bootstrap": "^1.0.0-beta.5",
+    "react-chartjs-2": "^4.0.1",
+    "react-dom": "^17.0.2",
     "react-minimal-pie-chart": "^8.2.0",
-    "react-simple-maps": "^2.3.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
+    "react-simple-maps": "^2.3.0",
     "react-svg-worldmap": "^2.0.0-alpha.0",
     "recharts": "^2.1.9",
     "topojson-client": "^3.1.0"
@@ -34,5 +44,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  } 
+  }
 }
