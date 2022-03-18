@@ -5,20 +5,29 @@
 }
 body {
   font-family: sans-serif;
+  text-align: left;
+
 }
 h1{
-  color: white
+  color: white;
+  text-align: center;
 }
 p{
   color: white
+}
+div{
+    text-align: left;
+}
+.graph{
+  margin-left:10%;
+  margin-right:10%
 }
 .App {
   background-color: #000000cc;
   border: 1px solid white;
   display: inline-block;
   font-family: sans-serif;
-  text-align: center;
-
+  text-align: left;
 }
 .legendContainer {
   display: flex;
@@ -43,6 +52,9 @@ svg {
 
 .wrap {
   padding: 20px;
+  margin-left: 10%;
+  margin-right: 10%
+
 }
 .detail {
   position: absolute;

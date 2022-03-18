@@ -36,14 +36,16 @@ tr > td:last-child {
 }
 /* app */
 .App {
-  text-align: center;
+  text-align: left;
   /* The code that you need to copy */
 position: absolute;
 left: 0px;
 right: 0px;
 top: 0px;
 }
-
+.allinone{
+  margin: 5%
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

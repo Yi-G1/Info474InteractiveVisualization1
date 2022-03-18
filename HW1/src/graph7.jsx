@@ -19,7 +19,7 @@ const populationData = [
   { label: "Pay More For Male", val: 93.5 },
   { label: "Pay More For Female", val: 7.5 },
     { label: "", val: 0 },
-      { label: "", val: 0} 
+      { label: "", val: 0}
 
 ];
 console.log("lenght", populationData.length);
@@ -40,7 +40,6 @@ const Graph7 = ({ width = 400, height = 400 }) => {
   const _pieShapeData = pieGenerator(populationData);
   return (
     <div>
-      <p>Pie chart</p>
       <svg width={width} height={height}>
         <g transform={`translate(${width / 2},${height / 2})`}>
           {_pieShapeData.map((pieSlice, i) => {

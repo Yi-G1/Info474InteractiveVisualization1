@@ -134,6 +134,7 @@ export default function App() {
 
   return (
     <div className="App">
+    <div className = "allinone">
         <h1>Project Equality </h1>
         <p className = "Intro">
         <br/>
@@ -146,12 +147,12 @@ There are many standards people use to measure bias, such as average age, averag
         For the scope of this project (which would be continued after HW2 by my self), we will look at several standards **(hw2 only look at wage gap)**, breifly examine them, and come up with a conclusion on our own.
         More specifically, we will study the following question:
         <br/><br/>
-        1. Are there bias in XXX (a given standard) around the world/In the US?
-          If there are, is it getting better or worse overtime?
+        <i>1. Are there bias in XXX (a given standard) around the world/In the US?
+          If there are, is it getting better or worse overtime?</i>
           <br/><br/>
-        2. Are data obtained from the datasets accurate? Will using different datasets come up with different conclusion? Does it fit what people believe and spread online?
+        <i>2. Are data obtained from the datasets accurate? Will using different datasets come up with different conclusion? Does it fit what people believe and spread online?</i>
         <br/><br/>
-        3. How does education influence gender equality with in different countries? Does more educated means less bias?
+        <i>3. How does economy and population influence gender equality with in different countries? Does more money means less bias?</i>
         <br/>         <br/>
 
          </p>
@@ -174,16 +175,21 @@ There are many standards people use to measure bias, such as average age, averag
 
         <div >
         <p>The Most Biased Countries by Continent</p>
-          <Graph3/>
+        <div className = "wrap">
+        <Graph3/>
+
         </div>
+          </div>
         <p>Insight: South America have the least bias on average. Asia countries have the most. But Turkey, which is in Asia, have a very low bias compare to others.</p>
         <p className = "comment">Comment on design: This is an improved version of my previously badly implemented bar graph. The onclick-change to subgraph made it possible to display all countries in one chart.
         Here I chosed continent other than area and biasedness as a way to categorize countries (which I have both tried and deleted) becasue it provides more balanced subgraphs and connect well with the first graph.</p>
 
         <p>3. A natural question then comes into our mind: What is cause of these differences? Could Economy status and Population size play a factor? Here we will introduce two new dimension of data--Population and GDP.</p>
         <p className = "red"><i>Clicking on points/legend will make them disappear, hovering will show detailed data. GDP is represented by size of the points</i></p>
-
+        <div className = "wrap">
         <Graph2/>
+
+        </div>
         <p>Insight: Due to the multidimential data in this graph, there are many correlations one can theoretically drawn. But after playing with all the data, there seems to be no correlation between gendergap, GDP per capita, continent, and population.  </p>
         <p className = "comment">Comment on design: My plan initially was to make a animated scatter plot that change over time. However, after concured the technicle difficulties, the graph itself just look like a fractured multiline graph with points instead of lines--the time data I have is not good enough to be an axis alone, with only 10 data points.
         Hence the introduction of population and gdp data, which is continous and performed much better as axis.  <br/> Since there are many countries, this scattered plot feels very crowded and hard to look initially, so i introduced continent data as another dimension and onclick-remove action made it more user friendly to study the data like previous graph.
@@ -191,11 +197,15 @@ There are many standards people use to measure bias, such as average age, averag
         </p>
 
         <p>4.Another question that we would love to ask is: Globally, have we have we get better in term of gender equality over years?</p>
+        <div className = "wrap">
         <Graph5/>
+
+        </div>
         <p> Insight: Our world has less gender gap on average compare to a decade ago. But not much progress have been made in general in the last 5 years.</p>
 
         <p>5. After all the global view, let us focus on the US, and study whether we have improved gender equality in our country? More specifically, we would like to know whether income status such as top 10 percent, median, bottom 10 percent have a influence on how biased we are.</p>
 
+        <div className = "wrap">
 
         <Legend
           data={legendData}
@@ -205,15 +215,19 @@ There are many standards people use to measure bias, such as average age, averag
         <MultilineChart data={chartData} dimensions={dimensions} />
         <p>Insight: People with more income does lead to more gender gap.Yet, because there is no detailed information on how gender gap is calculated, this difference could be simply due to the income difference: People earn 1 Million per year would have more gender gap than peopel earn 10K per year.  </p>
 
-
+        </div>
 
         <p>6. Another interesting question to ask is whether or not there are countries that bias towards women instead of man, and how many of them are there?</p>
         <p>As it turns out, after some data wrangling, there arn't any county having women earn more than men consistently. That being said, in 2018, the percentage of countries bias towards men is only 93.5 percent.</p>
+
+        <div className = "wrap">
         <Graph7/>
+        </div>
         <p>Of 31 countries where data is collected, 29 of them have positive wage gap. <br/>It is wonderful to see this happening.</p>
         <p>But in other years, all of the countires are biased towards male. </p>
 
         <p className = "comment">Comment on design: This would be the place where no graph is better. But I decided to include the pie chart for diversity purposes.</p>
+        </div>
     </div>
 
         // <p></p>
