@@ -191,7 +191,7 @@ There are many standards people use to measure bias, such as average age, averag
 
         </div>
         <p>Insight: Due to the multidimential data in this graph, there are many correlations one can theoretically drawn. But after playing with all the data, there seems to be no correlation between gendergap, GDP per capita, continent, and population.  </p>
-        <p className = "comment">Comment on design: My plan initially was to make a animated scatter plot that change over time. However, after concured the technicle difficulties, the graph itself just look like a fractured multiline graph with points instead of lines--the time data I have is not good enough to be an axis alone, with only 10 data points.
+        <p className = "comment">Comment on design: My plan initially was to make a animated scatter plot that change over time. However, after conquered the technicle difficulties, the graph itself just look like a fractured multiline graph with points instead of lines--the time data I have is not good enough to be an axis alone, with only 10 data points.
         Hence the introduction of population and gdp data, which is continous and performed much better as axis.  <br/> Since there are many countries, this scattered plot feels very crowded and hard to look initially, so i introduced continent data as another dimension and onclick-remove action made it more user friendly to study the data like previous graph.
 
         </p>
